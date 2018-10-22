@@ -20,24 +20,24 @@ namespace BlackJack.controller
                 a_view.DisplayGameOver(a_game.IsDealerWinner());
             }
 
-            // que?
-            int input = a_view.GetInput();
+            // Code below, changed by Edvin Larsson
 
-            // TODO: have bools in view inspecting this instead
-            if (input == 'p') 
+            if (a_view.UserWantsToPlay()) 
             {
                 a_game.NewGame();
             }
-            else if (input == 'h')
+            
+            if (a_view.UserWantsToHit())
             {
                 a_game.Hit();
             }
-            else if (input == 's')
+            
+            if (a_view.UserWantsToStand())
             {
                 a_game.Stand();
             }
 
-            return input != 'q'; // OK, program stops if => false
+            return a_view.UserWantsToQuit();
         }
     }
 }
