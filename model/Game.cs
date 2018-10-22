@@ -36,12 +36,15 @@ namespace BlackJack.model
             return m_dealer.Hit(m_player);
         }
 
+        /// <summary>
+        /// Edvin Larsson is taking over from here
+        /// </summary>
         public bool Stand()
         {
-            // TODO: Implement this according to Game_Stand.sequencediagram
+            m_dealer.Stand();
             return true;
         }
-
+        
         public IEnumerable<Card> GetDealerHand()
         {
             return m_dealer.GetHand();

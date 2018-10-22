@@ -13,7 +13,6 @@ namespace BlackJack.model
         private rules.INewGameStrategy m_newGameRule;
         private rules.IHitStrategy m_hitRule;
 
-
         public Dealer(rules.RulesFactory a_rulesFactory)
         {
             m_newGameRule = a_rulesFactory.GetNewGameRule();
@@ -30,6 +29,25 @@ namespace BlackJack.model
                 return m_newGameRule.NewGame(m_deck, this, a_player);   
             }
             return false;
+        }
+
+        /// <summary>
+        /// Method @author: Edvin Larsson,
+        /// inspired by Sequence Diagram
+        /// </summary>
+        public void Stand()
+        {
+            if (m_deck != null)
+            {
+                ShowHand();
+
+                while (m_hitRule.DoHit(this))
+                {
+                    Card card = m_deck.GetCard();
+                    card.Show(true);
+                    DealCard(card);
+                }
+            }
         }
 
         public bool Hit(Player a_player)
