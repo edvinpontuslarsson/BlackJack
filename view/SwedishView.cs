@@ -2,11 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace BlackJack.view
 {
     class SwedishView : IView 
     {
+        // Instructions as they are
+        private const string PlayCommand = "p";
+        private const string HitCommand = "h";
+        private const string StandCommand = "s";
+        private const string QuitCommand = "q";
+
+        private string UserInput { get; set; }
+
+        public void AskForUserInput()
+        {
+            UserInput = Console.ReadLine().ToLower();
+        }
+
+        public bool UserWantsToPlay()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == PlayCommand;
+        }
+
+        public bool UserWantsToHit()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == HitCommand;
+        }
+
+        public bool UserWantsToStand()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == StandCommand;
+        }
+
+        public bool UserWantsToQuit()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == QuitCommand;
+        }
+
         public void DisplayWelcomeMessage()
         {
             System.Console.Clear();
@@ -18,6 +56,7 @@ namespace BlackJack.view
         {
             return System.Console.In.Read();
         }
+
         public void DisplayCard(model.Card a_card)
         {
             if (a_card.GetColor() == model.Card.Color.Hidden)
@@ -64,5 +103,8 @@ namespace BlackJack.view
             System.Console.WriteLine("Poäng: {0}", a_score);
             System.Console.WriteLine("");
         }
+
+        // Method created by Edvin Larsson
+        private bool IsUserInputSet() => string.IsNullOrEmpty(UserInput);
     }
 }

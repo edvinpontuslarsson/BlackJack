@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace BlackJack.view
 {
@@ -18,13 +19,36 @@ namespace BlackJack.view
         // encapsulated with property because it is not a constant
         public string Instructions { get => _instructions; }
 
-        public bool UserWantsToPlay() => GetUserInput() == PlayCommand;
+        private string UserInput { get; set; }
 
-        public bool UserWantsToHit() => GetUserInput() == HitCommand;
+        public void AskForUserInput()
+        {
+            UserInput = Console.ReadLine().ToLower();
+        }
 
-        public bool UserWantsToStand() => GetUserInput() == StandCommand;
+        public bool UserWantsToPlay()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == PlayCommand;
+        }
 
-        public bool UserWantsToQuit() => GetUserInput() == QuitCommand;
+        public bool UserWantsToHit()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == HitCommand;
+        }
+
+        public bool UserWantsToStand()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == StandCommand;
+        }
+
+        public bool UserWantsToQuit()
+        {
+            Debug.Assert(IsUserInputSet());
+            return UserInput == QuitCommand;
+        }
 
         public void DisplayWelcomeMessage()
         {
@@ -67,10 +91,10 @@ namespace BlackJack.view
             
         }
 
-        // Method created by Edvin Larsson
-        private void DisplayInstructions() => Console.WriteLine(Instructions);
+        private void DisplayInstructions() => 
+            Console.WriteLine(Instructions);
 
-        // Method created by Edvin Larsson
-        private string GetUserInput() => Console.ReadLine().ToLower();
+        private bool IsUserInputSet() => 
+            !string.IsNullOrEmpty(UserInput);
     }
 }

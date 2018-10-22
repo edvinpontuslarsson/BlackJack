@@ -9,6 +9,7 @@ namespace BlackJack.controller
     {
         public bool Play(model.Game a_game, view.IView a_view)
         {
+            // was here originally
             a_view.DisplayWelcomeMessage();
             
             a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
@@ -20,23 +21,24 @@ namespace BlackJack.controller
             }
 
             // Code below, changed by Edvin Larsson
+            a_view.AskForUserInput();
 
             if (a_view.UserWantsToPlay()) 
             {
                 a_game.NewGame();
-            }
+            }            
             
             if (a_view.UserWantsToHit())
             {
                 a_game.Hit();
-            }
+            }            
             
             if (a_view.UserWantsToStand())
             {
                 a_game.Stand();
             }
 
-            return a_view.UserWantsToQuit();
+            return !a_view.UserWantsToQuit();
         }
     }
 }

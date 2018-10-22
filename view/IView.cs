@@ -12,6 +12,8 @@ namespace BlackJack.view
         // Edvin Larsson has removed int GetInput();
 
         // Added by Edvin Larsson
+        void AskForUserInput();
+        
         bool UserWantsToPlay();
 
         bool UserWantsToHit();
