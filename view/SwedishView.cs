@@ -6,55 +6,20 @@ using System.Diagnostics;
 
 namespace BlackJack.view
 {
-    class SwedishView : IView 
+    class SwedishView : CommonView, IView 
     {
-        // Instructions as they are
-        private const string PlayCommand = "p";
-        private const string HitCommand = "h";
-        private const string StandCommand = "s";
-        private const string QuitCommand = "q";
+        private string _swedishInstructions = 
+            $"Skriv '{PlayCommand}' för att Spela, '{HitCommand}' för nytt kort, " +
+            $"'{StandCommand}' för att stanna '{QuitCommand}' för att avsluta\n";
 
-        private string UserInput { get; set; }
-
-        public void AskForUserInput()
-        {
-            UserInput = Console.ReadLine().ToLower();
-        }
-
-        public bool UserWantsToPlay()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == PlayCommand;
-        }
-
-        public bool UserWantsToHit()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == HitCommand;
-        }
-
-        public bool UserWantsToStand()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == StandCommand;
-        }
-
-        public bool UserWantsToQuit()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == QuitCommand;
-        }
+        private string SwedishInstructions { get => _swedishInstructions; }
 
         public void DisplayWelcomeMessage()
         {
             System.Console.Clear();
             System.Console.WriteLine("Hej Black Jack Världen");
             System.Console.WriteLine("----------------------");
-            System.Console.WriteLine("Skriv 'p' för att Spela, 'h' för nytt kort, 's' för att stanna 'q' för att avsluta\n");
-        }
-        public int GetInput()
-        {
-            return System.Console.In.Read();
+            System.Console.WriteLine(SwedishInstructions);
         }
 
         public void DisplayCard(model.Card a_card)
@@ -103,8 +68,5 @@ namespace BlackJack.view
             System.Console.WriteLine("Poäng: {0}", a_score);
             System.Console.WriteLine("");
         }
-
-        // Method created by Edvin Larsson
-        private bool IsUserInputSet() => string.IsNullOrEmpty(UserInput);
     }
 }

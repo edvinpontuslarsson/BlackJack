@@ -6,49 +6,13 @@ using System.Diagnostics;
 
 namespace BlackJack.view
 {
-    class SimpleView : IView
-    {        
-        private const string PlayCommand = "p";
-        private const string HitCommand = "h";
-        private const string StandCommand = "s";
-        private const string QuitCommand = "q";
+    class SimpleView : CommonView, IView
+    {
         private string _instructions = 
             $"Type '{PlayCommand}' to Play, '{HitCommand}' to Hit, " +
             $"'{StandCommand}' to Stand or '{QuitCommand}' to Quit\n";
-
-        // encapsulated with property because it is not a constant
-        public string Instructions { get => _instructions; }
-
-        private string UserInput { get; set; }
-
-        public void AskForUserInput()
-        {
-            UserInput = Console.ReadLine().ToLower();
-        }
-
-        public bool UserWantsToPlay()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == PlayCommand;
-        }
-
-        public bool UserWantsToHit()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == HitCommand;
-        }
-
-        public bool UserWantsToStand()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == StandCommand;
-        }
-
-        public bool UserWantsToQuit()
-        {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == QuitCommand;
-        }
+        
+        private string Instructions { get => _instructions; }
 
         public void DisplayWelcomeMessage()
         {
@@ -93,8 +57,5 @@ namespace BlackJack.view
 
         private void DisplayInstructions() => 
             Console.WriteLine(Instructions);
-
-        private bool IsUserInputSet() => 
-            !string.IsNullOrEmpty(UserInput);
     }
 }
