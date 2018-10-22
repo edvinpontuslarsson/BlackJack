@@ -18,14 +18,20 @@ namespace BlackJack.view
         // encapsulated with property because it is not a constant
         public string Instructions { get => _instructions; }
 
+        public bool UserWantsToPlay() => GetUserInput() == PlayCommand;
+
+        public bool UserWantsToHit() => GetUserInput() == HitCommand;
+
+        public bool UserWantsToStand() => GetUserInput() == StandCommand;
+
+        public bool UserWantsToQuit() => GetUserInput() == QuitCommand;
+
         public void DisplayWelcomeMessage()
         {
             Console.Clear();
             Console.WriteLine("Hello Black Jack World");
             DisplayInstructions();
         }
-
-        // use Console.Clear();
 
         public void DisplayCard(model.Card a_card) => 
             Console.WriteLine("{0} of {1}", a_card.GetValue(), a_card.GetColor());

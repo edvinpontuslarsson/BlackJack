@@ -7,7 +7,6 @@ namespace BlackJack.controller
 {
     class PlayGame
     {
-        // the view currently being sent from Program is SimpleView
         public bool Play(model.Game a_game, view.IView a_view)
         {
             a_view.DisplayWelcomeMessage();
