@@ -32,7 +32,7 @@ namespace BlackJack.model
         }
 
         /// <summary>
-        /// Method @author: Edvin Larsson,
+        /// Method author: Edvin Larsson,
         /// inspired by Sequence Diagram
         /// </summary>
         public void Stand()
