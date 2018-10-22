@@ -7,6 +7,7 @@ namespace BlackJack.controller
 {
     class PlayGame
     {
+        // the view currently being sent from Program is SimpleView
         public bool Play(model.Game a_game, view.IView a_view)
         {
             a_view.DisplayWelcomeMessage();
@@ -19,9 +20,11 @@ namespace BlackJack.controller
                 a_view.DisplayGameOver(a_game.IsDealerWinner());
             }
 
+            // que?
             int input = a_view.GetInput();
 
-            if (input == 'p')
+            // TODO: have bools in view inspecting this instead
+            if (input == 'p') 
             {
                 a_game.NewGame();
             }
@@ -34,7 +37,7 @@ namespace BlackJack.controller
                 a_game.Stand();
             }
 
-            return input != 'q';
+            return input != 'q'; // OK, program stops if => false
         }
     }
 }

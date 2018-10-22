@@ -7,22 +7,31 @@ namespace BlackJack.view
 {
     class SimpleView : IView
     {
+        // OK, seems like I need Console,
+        // at least for public methods
 
         public void DisplayWelcomeMessage()
         {
-            System.Console.Clear();
-            System.Console.WriteLine("Hello Black Jack World");
-            System.Console.WriteLine("Type 'p' to Play, 'h' to Hit, 's' to Stand or 'q' to Quit\n");
+            Console.Clear();
+            Console.WriteLine("Hello Black Jack World");
+            DisplayInstructions();
         }
 
+        // TODO: I'll use my way of reading instead,
+        // perhaps add removing, Console.Clear(); ???
+
+        // error message if wrong input, instructions
+
+        /* 
         public int GetInput()
         {
-            return System.Console.In.Read();
+            return Console.In.Read();
         }
+        */
 
         public void DisplayCard(model.Card a_card)
         {
-            System.Console.WriteLine("{0} of {1}", a_card.GetValue(), a_card.GetColor());
+            Console.WriteLine("{0} of {1}", a_card.GetValue(), a_card.GetColor());
         }
 
         public void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score)
@@ -37,27 +46,37 @@ namespace BlackJack.view
 
         private void DisplayHand(String a_name, IEnumerable<model.Card> a_hand, int a_score)
         {
-            System.Console.WriteLine("{0} Has: ", a_name);
+            Console.WriteLine("{0} Has: ", a_name);
             foreach (model.Card c in a_hand)
             {
                 DisplayCard(c);
             }
-            System.Console.WriteLine("Score: {0}", a_score);
-            System.Console.WriteLine("");
+            Console.WriteLine("Score: {0}", a_score);
+            Console.WriteLine("");
         }
 
         public void DisplayGameOver(bool a_dealerIsWinner)
         {
-            System.Console.Write("GameOver: ");
+            Console.Write("GameOver: ");
             if (a_dealerIsWinner)
             {
-                System.Console.WriteLine("Dealer Won!");
+                Console.WriteLine("Dealer Won!");
             }
             else
             {
-                System.Console.WriteLine("You Won!");
+                Console.WriteLine("You Won!");
             }
             
+        }
+
+        /// <summary>
+        /// Method created by Edvin Larsson
+        /// </summary>
+        private void DisplayInstructions()
+        {
+            Console.WriteLine(
+                "Type 'p' to Play, 'h' to Hit, 's' to Stand or 'q' to Quit\n"
+            );
         }
     }
 }
