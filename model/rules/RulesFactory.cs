@@ -19,6 +19,6 @@ namespace BlackJack.model.rules
         }
 
         public IPickWinnerStrategy GetPickWinnerRule() =>
-            new DealerWinsTieStrategy();
+            new PlayerWinsTieStrategy();
     }       
 }
