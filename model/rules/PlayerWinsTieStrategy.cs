@@ -3,10 +3,8 @@ using System;
 namespace BlackJack.model.rules
 {
     // class created by Edvin Larsson
-    class PlayerWinsTieStrategy : IPickWinnerStrategy
+    class PlayerWinsTieStrategy : CommonPickWinnerStrategy, IPickWinnerStrategy
     {
-        private const int MaxScore = 21;
-
         /// <summary>
         /// Unless player is busted,
         /// dealer has to be not busted and have a higher score to win,
@@ -17,8 +15,5 @@ namespace BlackJack.model.rules
         ) =>
             IsBusted(player) ||
             !IsBusted(dealer) && dealer.CalcScore() > player.CalcScore();
-
-        private bool IsBusted(model.Player person) => 
-            person.CalcScore() > MaxScore;
     }
 }
