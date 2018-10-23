@@ -6,7 +6,7 @@ namespace BlackJack.view
     /// <summary>
     /// Class author: Edvin Larsson
     /// </summary>
-    class CommonView
+    abstract class CommonView
     {
         protected const string PlayCommand = "p";
         protected const string HitCommand = "h";
