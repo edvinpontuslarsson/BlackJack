@@ -2,6 +2,7 @@ using System;
 
 namespace BlackJack.model.rules
 {
+    // Tested in BlackJack.test.Test
     class Soft17HitStrategy : IHitStrategy
     {
         private const int SoftHitLimit = 17;
