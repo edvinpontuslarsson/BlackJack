@@ -8,15 +8,19 @@ namespace BlackJack.model
     class Dealer : Player
     {
         private Deck m_deck = null;
+
         private const int g_maxScore = 21;
 
         private rules.INewGameStrategy m_newGameRule;
         private rules.IHitStrategy m_hitRule;
 
+        private rules.IPickWinnerStrategy m_pickWinnerRule;
+
         public Dealer(rules.RulesFactory a_rulesFactory)
         {
             m_newGameRule = a_rulesFactory.GetNewGameRule();
             m_hitRule = a_rulesFactory.GetHitRule();
+            m_pickWinnerRule = a_rulesFactory.GetPickWinnerRule();
         }
 
         public bool NewGame(Player a_player)
@@ -64,18 +68,8 @@ namespace BlackJack.model
             return false;
         }
 
-        public bool IsDealerWinner(Player a_player)
-        {
-            if (a_player.CalcScore() > g_maxScore)
-            {
-                return true;
-            }
-            else if (CalcScore() > g_maxScore)
-            {
-                return false;
-            }
-            return CalcScore() >= a_player.CalcScore();
-        }
+        public bool IsDealerWinner(Player a_player) => 
+            m_pickWinnerRule.IsDealerWinner(this, a_player);
 
         public bool IsGameOver()
         {

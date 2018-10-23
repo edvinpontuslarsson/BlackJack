@@ -35,7 +35,8 @@ namespace BlackJack.test
 
         private bool DoHit(int score, string[] cards)
         {
-            if (score == 17 && HasAnAce(cards))
+            if (score == 17 && 
+                HasAnAce(cards))
             {
                 return true;
             }
