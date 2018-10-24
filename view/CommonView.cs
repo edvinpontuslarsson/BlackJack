@@ -12,33 +12,76 @@ namespace BlackJack.view
 
         private string UserInput { get; set; }
 
+        private bool IsUserWantsToPlay { get; set; }
+
+        private bool IsUserWantsToHit { get; set; }
+
+        private bool IsUserWantsToStand { get; set; }
+
+        private bool IsUserWantsToQuit { get; set; }
+
         public bool UserWantsToPlay()
         {
-            SetUserInputIfNotSet();
-            return UserInput == PlayCommand;
+            if (!IsUserWantsToHit && !IsUserWantsToStand && !IsUserWantsToQuit)
+            {
+                SetUserInputIfNotSet();
+                bool userWantsToPlay = UserInput == PlayCommand;
+                ResetUserInputIf(userWantsToPlay);
+                IsUserWantsToPlay = userWantsToPlay;
+                return userWantsToPlay;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool UserWantsToHit()
         {
-            SetUserInputIfNotSet();
-            return UserInput == HitCommand;
+            if (!IsUserWantsToPlay && !IsUserWantsToStand && !IsUserWantsToQuit)
+            {
+                SetUserInputIfNotSet();
+                bool userWantsToHit = UserInput == HitCommand;
+                ResetUserInputIf(userWantsToHit);
+                IsUserWantsToHit = userWantsToHit;
+                return userWantsToHit;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool UserWantsToStand()
         {
-            SetUserInputIfNotSet();
-            return UserInput == StandCommand;
+            if (!IsUserWantsToPlay && !IsUserWantsToHit && !IsUserWantsToQuit)
+            {
+                SetUserInputIfNotSet();
+                bool userWantsToStand = UserInput == StandCommand;
+                ResetUserInputIf(userWantsToStand);
+                IsUserWantsToStand = userWantsToStand;
+                return userWantsToStand;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        /// <summary>
-        /// Also resets user input
-        /// </summary>
         public bool UserWantsToQuit()
         {
-            SetUserInputIfNotSet();
-            bool userWantsToQuit = UserInput == QuitCommand;
-            UserInput = null;
-            return userWantsToQuit;
+            if (!IsUserWantsToPlay && !IsUserWantsToHit && !IsUserWantsToStand)
+            {
+                SetUserInputIfNotSet();
+                bool userWantsToQuit = UserInput == QuitCommand;
+                ResetUserInputIf(userWantsToQuit);
+                IsUserWantsToQuit = userWantsToQuit;
+                return userWantsToQuit;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void SetUserInputIfNotSet()
@@ -47,6 +90,11 @@ namespace BlackJack.view
             {
                 UserInput = Console.ReadLine().ToLower();
             }
+        }
+
+        private void ResetUserInputIf(bool condition)
+        {
+            if (condition) UserInput = null;
         }
     }
 }
