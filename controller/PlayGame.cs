@@ -21,8 +21,6 @@ namespace BlackJack.controller
             }
 
             // Code below, changed by Edvin Larsson
-            a_view.AskForUserInput();
-
             if (a_view.UserWantsToPlay()) 
             {
                 a_game.NewGame();

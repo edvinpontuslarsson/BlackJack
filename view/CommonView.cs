@@ -3,9 +3,6 @@ using System.Diagnostics;
 
 namespace BlackJack.view
 {
-    /// <summary>
-    /// Class author: Edvin Larsson
-    /// </summary>
     abstract class CommonView
     {
         protected const string PlayCommand = "p";
@@ -13,37 +10,43 @@ namespace BlackJack.view
         protected const string StandCommand = "s";
         protected const string QuitCommand = "q";
 
-        protected string UserInput { get; set; }
-
-        public void AskForUserInput()
-        {
-            UserInput = Console.ReadLine().ToLower();
-        }
+        private string UserInput { get; set; }
 
         public bool UserWantsToPlay()
         {
-            Debug.Assert(IsUserInputSet());
+            SetUserInputIfNotSet();
             return UserInput == PlayCommand;
         }
 
         public bool UserWantsToHit()
         {
-            Debug.Assert(IsUserInputSet());
+            SetUserInputIfNotSet();
             return UserInput == HitCommand;
         }
 
         public bool UserWantsToStand()
         {
-            Debug.Assert(IsUserInputSet());
+            SetUserInputIfNotSet();
             return UserInput == StandCommand;
         }
 
+        /// <summary>
+        /// Also resets user input
+        /// </summary>
         public bool UserWantsToQuit()
         {
-            Debug.Assert(IsUserInputSet());
-            return UserInput == QuitCommand;
+            SetUserInputIfNotSet();
+            bool userWantsToQuit = UserInput == QuitCommand;
+            UserInput = null;
+            return userWantsToQuit;
         }
 
-        private bool IsUserInputSet() => !string.IsNullOrEmpty(UserInput);
+        private void SetUserInputIfNotSet()
+        {
+            if (string.IsNullOrEmpty(UserInput))
+            {
+                UserInput = Console.ReadLine().ToLower();
+            }
+        }
     }
 }
