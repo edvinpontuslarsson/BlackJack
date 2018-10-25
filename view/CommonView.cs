@@ -12,84 +12,71 @@ namespace BlackJack.view
 
         private string UserInput { get; set; }
 
-        private bool IsUserWantsToPlay { get; set; }
-
-        private bool IsUserWantsToHit { get; set; }
-
-        private bool IsUserWantsToStand { get; set; }
-
-        private bool IsUserWantsToQuit { get; set; }
+        private bool DoesUserWantsToPlay { get; set; }
+        private bool DoesUserWantsToHit { get; set; }
+        private bool DoesUserWantsToStand { get; set; }
+        private bool DoesUserWantsToQuit { get; set; }
 
         public bool UserWantsToPlay()
         {
-            if (!IsUserWantsToHit && !IsUserWantsToStand && !IsUserWantsToQuit)
+            if (!DoesUserWantsToHit && !DoesUserWantsToStand && !DoesUserWantsToQuit)
             {
-                SetUserInputIfNotSet();
-                bool userWantsToPlay = UserInput == PlayCommand;
-                ResetUserInputIf(userWantsToPlay);
-                IsUserWantsToPlay = userWantsToPlay;
+                bool userWantsToPlay = UserInputEquals(PlayCommand);
+                DoesUserWantsToPlay = userWantsToPlay;
                 return userWantsToPlay;
             }
             else
-            {
                 return false;
-            }
         }
 
         public bool UserWantsToHit()
         {
-            if (!IsUserWantsToPlay && !IsUserWantsToStand && !IsUserWantsToQuit)
+            if (!DoesUserWantsToPlay && !DoesUserWantsToStand && !DoesUserWantsToQuit)
             {
-                SetUserInputIfNotSet();
-                bool userWantsToHit = UserInput == HitCommand;
-                ResetUserInputIf(userWantsToHit);
-                IsUserWantsToHit = userWantsToHit;
+                bool userWantsToHit = UserInputEquals(HitCommand);
+                DoesUserWantsToHit = userWantsToHit;
                 return userWantsToHit;
             }
             else
-            {
                 return false;
-            }
         }
 
         public bool UserWantsToStand()
         {
-            if (!IsUserWantsToPlay && !IsUserWantsToHit && !IsUserWantsToQuit)
+            if (!DoesUserWantsToPlay && !DoesUserWantsToHit && !DoesUserWantsToQuit)
             {
-                SetUserInputIfNotSet();
-                bool userWantsToStand = UserInput == StandCommand;
-                ResetUserInputIf(userWantsToStand);
-                IsUserWantsToStand = userWantsToStand;
+                bool userWantsToStand = UserInputEquals(StandCommand);
+                DoesUserWantsToStand = userWantsToStand;
                 return userWantsToStand;
             }
             else
-            {
                 return false;
-            }
         }
 
         public bool UserWantsToQuit()
         {
-            if (!IsUserWantsToPlay && !IsUserWantsToHit && !IsUserWantsToStand)
+            if (!DoesUserWantsToPlay && !DoesUserWantsToHit && !DoesUserWantsToStand)
             {
-                SetUserInputIfNotSet();
-                bool userWantsToQuit = UserInput == QuitCommand;
-                ResetUserInputIf(userWantsToQuit);
-                IsUserWantsToQuit = userWantsToQuit;
+                bool userWantsToQuit = UserInputEquals(QuitCommand);
+                DoesUserWantsToQuit = userWantsToQuit;
                 return userWantsToQuit;
             }
             else
-            {
                 return false;
-            }
+        }
+
+        private bool UserInputEquals(string command)
+        {
+            SetUserInputIfNotSet();
+            bool inputEqualsCommand = UserInput == command;
+            ResetUserInputIf(inputEqualsCommand);
+            return inputEqualsCommand;
         }
 
         private void SetUserInputIfNotSet()
         {
-            if (string.IsNullOrEmpty(UserInput))
-            {
+            if (string.IsNullOrEmpty(UserInput)) 
                 UserInput = Console.ReadLine().ToLower();
-            }
         }
 
         private void ResetUserInputIf(bool condition)
