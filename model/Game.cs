@@ -37,7 +37,7 @@ namespace BlackJack.model
         }
 
         /// <summary>
-        /// Edvin Larsson is taking over from here
+        /// Edvin Larsson changed this method
         /// </summary>
         public bool Stand()
         {

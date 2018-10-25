@@ -13,19 +13,19 @@ namespace BlackJack.model.rules
 
             c = a_deck.GetCard();
             c.Show(true);
-            a_player.DealCard(c);
+            a_player.AddCardToHand(c);
 
             c = a_deck.GetCard();
             c.Show(true);
-            a_dealer.DealCard(c);
+            a_dealer.AddCardToHand(c);
 
             c = a_deck.GetCard();
             c.Show(true);
-            a_player.DealCard(c);
+            a_player.AddCardToHand(c);
 
             c = a_deck.GetCard();
             c.Show(false);
-            a_dealer.DealCard(c);
+            a_dealer.AddCardToHand(c);
 
             return true;
         }

@@ -49,7 +49,7 @@ namespace BlackJack.model
                 {
                     Card card = m_deck.GetCard();
                     card.Show(true);
-                    DealCard(card);
+                    AddCardToHand(card);
                 }
             }
         }
@@ -61,12 +61,25 @@ namespace BlackJack.model
                 Card c;
                 c = m_deck.GetCard();
                 c.Show(true);
-                a_player.DealCard(c);
+                a_player.AddCardToHand(c);
 
                 return true;
             }
             return false;
         }
+
+        // TODO: maybe have some kind of loop too
+
+        /// <summary>
+        /// Method created by Edvin Larsson
+        /// </summary>
+        /// <param name="a_player">Player/Dealer</param>
+        public void DealCardTo(Player a_player)
+        {
+            Card card = m_deck.GetCard();
+            card.Show(true);
+            a_player.AddCardToHand(card);
+        }       
 
         public bool IsDealerWinner(Player a_player) => 
             m_pickWinnerRule.IsDealerWinner(this, a_player);
