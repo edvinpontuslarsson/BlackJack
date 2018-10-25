@@ -12,7 +12,7 @@ namespace BlackJack.model.rules
         {
             for (int x = 1; x <= 3; x++)
             {
-                Player person = x % 2 == 1 ? a_player : a_dealer;
+                Player person = x % 2 == 0 ? a_dealer : a_player;
                 a_dealer.DealCardTo(person, true);
             }
 
