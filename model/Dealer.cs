@@ -47,9 +47,7 @@ namespace BlackJack.model
 
                 while (m_hitRule.DoHit(this))
                 {
-                    Card card = m_deck.GetCard();
-                    card.Show(true);
-                    AddCardToHand(card);
+                    DealCardTo(this, true);
                 }
             }
         }
@@ -58,17 +56,15 @@ namespace BlackJack.model
         {
             if (m_deck != null && a_player.CalcScore() < g_maxScore && !IsGameOver())
             {
-                Card c;
-                c = m_deck.GetCard();
-                c.Show(true);
-                a_player.AddCardToHand(c);
+                DealCardTo(a_player, true);
 
                 return true;
             }
             return false;
         }
 
-        // TODO: maybe have some kind of loop too
+        // TODO: ask slack if something like this is appropirate
+        // solution
 
         /// <summary>
         /// Method created by Edvin Larsson
@@ -79,7 +75,7 @@ namespace BlackJack.model
             Card card = m_deck.GetCard();
             card.Show(shouldShowCard);
             a_player.AddCardToHand(card);
-        }       
+        }
 
         public bool IsDealerWinner(Player a_player) => 
             m_pickWinnerRule.IsDealerWinner(this, a_player);
