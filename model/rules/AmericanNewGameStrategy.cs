@@ -9,13 +9,14 @@ namespace BlackJack.model.rules
     {
         public bool NewGame(Deck a_deck, Dealer a_dealer, Player a_player)
         {
-            a_dealer.DealCardTo(a_player, true);
+            for (int x = 1; x <= 4; x++)
+            {
+                Player person = x % 2 == 1 ? a_player : a_dealer;
 
-            a_dealer.DealCardTo(a_dealer, true);
+                bool shouldShowCard = x < 4 ? true : false;
 
-            a_dealer.DealCardTo(a_player, true);
-
-            a_dealer.DealCardTo(a_dealer, false);
+                a_dealer.DealCardTo(person, shouldShowCard);
+            }
 
             return true;
         }
