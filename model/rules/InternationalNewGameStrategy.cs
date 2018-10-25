@@ -10,13 +10,11 @@ namespace BlackJack.model.rules
 
         public bool NewGame(Deck a_deck, Dealer a_dealer, Player a_player)
         {
-            // loop perhaps 
-            
-            a_dealer.DealCardTo(a_player, true);
-
-            a_dealer.DealCardTo(a_dealer, true);
-
-            a_dealer.DealCardTo(a_player, true);
+            for (int x = 1; x <= 3; x++)
+            {
+                Player person = x % 2 == 1 ? a_player : a_dealer;
+                a_dealer.DealCardTo(person, true);
+            }
 
             return true;
         }
