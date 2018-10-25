@@ -74,10 +74,10 @@ namespace BlackJack.model
         /// Method created by Edvin Larsson
         /// </summary>
         /// <param name="a_player">Player/Dealer</param>
-        public void DealCardTo(Player a_player)
+        public void DealCardTo(Player a_player, bool shouldShowCard)
         {
             Card card = m_deck.GetCard();
-            card.Show(true);
+            card.Show(shouldShowCard);
             a_player.AddCardToHand(card);
         }       
 
