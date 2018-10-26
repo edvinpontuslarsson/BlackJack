@@ -21,22 +21,24 @@ namespace BlackJack.controller
             }
 
             // Code below, changed by Edvin Larsson
-            if (a_view.UserWantsToPlay()) 
+            UserWish userWish = a_view.GetUserWish();
+
+            if (userWish == UserWish.Play) 
             {
                 a_game.NewGame();
             }            
             
-            if (a_view.UserWantsToHit())
+            if (userWish == UserWish.Hit)
             {
                 a_game.Hit();
             }            
             
-            if (a_view.UserWantsToStand())
+            if (userWish == UserWish.Stand)
             {
                 a_game.Stand();
             }
 
-            return !a_view.UserWantsToQuit();
+            return userWish != UserWish.Quit;
         }
     }
 }

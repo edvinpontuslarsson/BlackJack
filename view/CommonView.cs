@@ -10,78 +10,23 @@ namespace BlackJack.view
         protected const string StandCommand = "s";
         protected const string QuitCommand = "q";
 
-        private string UserInput { get; set; }
-
-        private bool DoesUserWantsToPlay { get; set; }
-        private bool DoesUserWantsToHit { get; set; }
-        private bool DoesUserWantsToStand { get; set; }
-        private bool DoesUserWantsToQuit { get; set; }
-
-        public bool UserWantsToPlay()
+        public controller.UserWish GetUserWish()
         {
-            if (!DoesUserWantsToHit && !DoesUserWantsToStand && !DoesUserWantsToQuit)
+            string userRequest = Console.ReadLine().ToLower();
+
+            switch (userRequest)
             {
-                bool userWantsToPlay = UserInputEquals(PlayCommand);
-                DoesUserWantsToPlay = userWantsToPlay;
-                return userWantsToPlay;
+                case PlayCommand:
+                    return controller.UserWish.Play;
+                case HitCommand:
+                    return controller.UserWish.Hit;
+                case StandCommand:
+                    return controller.UserWish.Stand;
+                case QuitCommand:
+                    return controller.UserWish.Quit;
+                default:
+                    return controller.UserWish.Unrecognized;
             }
-            else
-                return false;
-        }
-
-        public bool UserWantsToHit()
-        {
-            if (!DoesUserWantsToPlay && !DoesUserWantsToStand && !DoesUserWantsToQuit)
-            {
-                bool userWantsToHit = UserInputEquals(HitCommand);
-                DoesUserWantsToHit = userWantsToHit;
-                return userWantsToHit;
-            }
-            else
-                return false;
-        }
-
-        public bool UserWantsToStand()
-        {
-            if (!DoesUserWantsToPlay && !DoesUserWantsToHit && !DoesUserWantsToQuit)
-            {
-                bool userWantsToStand = UserInputEquals(StandCommand);
-                DoesUserWantsToStand = userWantsToStand;
-                return userWantsToStand;
-            }
-            else
-                return false;
-        }
-
-        public bool UserWantsToQuit()
-        {
-            if (!DoesUserWantsToPlay && !DoesUserWantsToHit && !DoesUserWantsToStand)
-            {
-                bool userWantsToQuit = UserInputEquals(QuitCommand);
-                DoesUserWantsToQuit = userWantsToQuit;
-                return userWantsToQuit;
-            }
-            else
-                return false;
-        }
-
-        private bool UserInputEquals(string command)
-        {
-            SetUserInputIfNotSet();
-            bool inputEqualsCommand = UserInput == command;
-            ResetUserInputIf(inputEqualsCommand);
-            return inputEqualsCommand;
-        }
-
-        private void SetUserInputIfNotSet()
-        {
-            if (string.IsNullOrEmpty(UserInput)) 
-                UserInput = Console.ReadLine().ToLower();
-        }
-
-        private void ResetUserInputIf(bool condition)
-        {
-            if (condition) UserInput = null;
         }
     }
 }
