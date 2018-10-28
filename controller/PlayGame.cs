@@ -13,7 +13,7 @@ namespace BlackJack.controller
             a_view.DisplayWelcomeMessage();
 
             Observer observer = new Observer(a_view);
-            
+            a_game.RegisterObserver(observer);
             
             a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
             a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
