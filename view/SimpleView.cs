@@ -21,9 +21,6 @@ namespace BlackJack.view
             DisplayInstructions();
         }
 
-        public void DisplayCard(model.Card a_card) => 
-            Console.WriteLine("{0} of {1}", a_card.GetValue(), a_card.GetColor());
-
         public void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score) => 
             DisplayHand("Player", a_hand, a_score);
 
@@ -40,6 +37,9 @@ namespace BlackJack.view
             Console.WriteLine("Score: {0}", a_score);
             Console.WriteLine("");
         }
+
+        public void DisplayCard(model.Card a_card) => 
+            Console.WriteLine("{0} of {1}", a_card.GetValue(), a_card.GetColor());
 
         public void DisplayGameOver(bool a_dealerIsWinner)
         {

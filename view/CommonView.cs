@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics;
+using System.Threading;
 
 namespace BlackJack.view
 {
@@ -28,5 +28,11 @@ namespace BlackJack.view
                     return controller.UserWish.Unrecognized;
             }
         }
+
+        public void HandleDealtCard() => Pause();
+
+        // perhaps also console show card here
+        // might then need these in both views
+        private void Pause() => Thread.Sleep(10000);
     }
 }

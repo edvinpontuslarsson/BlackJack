@@ -11,32 +11,23 @@ namespace BlackJack.controller
         {
             // was here originally
             a_view.DisplayWelcomeMessage();
+
+            Observer observer = new Observer(a_view);
+            
             
             a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
             a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
 
-            if (a_game.IsGameOver())
-            {
-                a_view.DisplayGameOver(a_game.IsDealerWinner());
-            }
+            if (a_game.IsGameOver()) a_view.DisplayGameOver(a_game.IsDealerWinner());
 
             // Code below, changed by Edvin Larsson
             UserWish userWish = a_view.GetUserWish();
 
-            if (userWish == UserWish.Play) 
-            {
-                a_game.NewGame();
-            }            
+            if (userWish == UserWish.Play) a_game.NewGame();
+        
+            if (userWish == UserWish.Hit) a_game.Hit();  
             
-            if (userWish == UserWish.Hit)
-            {
-                a_game.Hit();
-            }            
-            
-            if (userWish == UserWish.Stand)
-            {
-                a_game.Stand();
-            }
+            if (userWish == UserWish.Stand) a_game.Stand();
 
             return userWish != UserWish.Quit;
         }

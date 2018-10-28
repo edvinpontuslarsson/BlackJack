@@ -9,6 +9,8 @@ namespace BlackJack.model
     {
         private Deck m_deck = null;
 
+        private IObserver m_observer;
+
         private const int g_maxScore = 21;
 
         private rules.INewGameStrategy m_newGameRule;
@@ -22,6 +24,9 @@ namespace BlackJack.model
             m_hitRule = a_rulesFactory.GetHitRule();
             m_pickWinnerRule = a_rulesFactory.GetPickWinnerRule();
         }
+
+        public void RegisterObserver(IObserver observer)
+            => m_observer = observer;
 
         public bool NewGame(Player a_player)
         {
@@ -63,9 +68,6 @@ namespace BlackJack.model
             return false;
         }
 
-        // TODO: ask slack if something like this is appropirate
-        // solution
-
         /// <summary>
         /// Method created by Edvin Larsson
         /// </summary>
@@ -75,6 +77,8 @@ namespace BlackJack.model
             Card card = m_deck.GetCard();
             card.Show(shouldShowCard);
             a_player.AddCardToHand(card);
+
+            m_observer.NotifyAboutDealtCard();
         }
 
         public bool IsDealerWinner(Player a_player) => 
