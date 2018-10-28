@@ -7,7 +7,11 @@ namespace BlackJack.model
 {
     class Player
     {
+        private const string _name = "Player";
+
         private List<Card> m_hand = new List<Card>();
+
+        public virtual string Name { get => _name; }
 
         /// <summary>
         /// Edvin Larsson changed method name,

@@ -26,9 +26,6 @@ namespace BlackJack
         private static void InitializeApp()
         {
             model.Game g = new model.Game();
-
-            // Perhaps call view with model for observation
-
             view.IView v = new view.SimpleView(); // new view.SwedishView();
             controller.PlayGame ctrl = new controller.PlayGame();
 

@@ -7,6 +7,8 @@ namespace BlackJack.model
 {
     class Dealer : Player
     {
+        private const string _name = "Dealer";
+
         private Deck m_deck = null;
 
         private IObserver m_observer;
@@ -17,6 +19,8 @@ namespace BlackJack.model
         private rules.IHitStrategy m_hitRule;
 
         private rules.IPickWinnerStrategy m_pickWinnerRule;
+
+        public override string Name { get => _name; }
 
         public Dealer(rules.RulesFactory a_rulesFactory)
         {
