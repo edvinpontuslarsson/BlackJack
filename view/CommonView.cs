@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace BlackJack.view
@@ -29,10 +30,15 @@ namespace BlackJack.view
             }
         }
 
-        public void HandleDealtCard() => Pause();
+        public void NotifyAboutDealtCard()
+        {
+            // UI should be redrawn when new card then paused
+        }
 
-        // perhaps also console show card here
-        // might then need these in both views
-        private void Pause() => Thread.Sleep(10000);
+        public abstract void DisplayDealerHand(IEnumerable<model.Card> a_hand, int a_score);
+
+        public abstract void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score);
+
+        private void Pause() => Thread.Sleep(1000);
     }
 }

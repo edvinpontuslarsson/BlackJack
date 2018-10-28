@@ -12,11 +12,18 @@ namespace BlackJack.controller
             // was here originally
             a_view.DisplayWelcomeMessage();
 
+            // TODO: perhaps use official C# observer thing instead
+
+            // observer from program
             Observer observer = new Observer(a_view);
             a_game.RegisterObserver(observer);
+
+            // initiate view with model from program
             
+            /* 
             a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
             a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+            */
 
             if (a_game.IsGameOver()) a_view.DisplayGameOver(a_game.IsDealerWinner());
 

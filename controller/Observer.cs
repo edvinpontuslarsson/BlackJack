@@ -14,7 +14,7 @@ namespace BlackJack.controller
 
         public void NotifyAboutDealtCard()
         {
-            m_view.HandleDealtCard();
+            m_view.NotifyAboutDealtCard();
         }
     }
 }
