@@ -13,7 +13,7 @@ namespace BlackJack.controller
         {         
             if (!GameStarted) a_view.DisplayWelcomeMessage();
 
-            Observer observer = new Observer(a_game, a_view);
+            DealtCardObserver observer = new DealtCardObserver(a_game, a_view);
             a_game.RegisterObserver(observer);
 
             if (a_game.IsGameOver()) a_view.DisplayGameOver(a_game.IsDealerWinner());

@@ -11,7 +11,7 @@ namespace BlackJack.model
 
         private Deck m_deck = null;
 
-        private IObserver m_observer;
+        private IDealtCardObserver m_observer;
 
         private const int g_maxScore = 21;
 
@@ -29,7 +29,7 @@ namespace BlackJack.model
             m_pickWinnerRule = a_rulesFactory.GetPickWinnerRule();
         }
 
-        public void RegisterObserver(IObserver observer)
+        public void RegisterObserver(IDealtCardObserver observer)
             => m_observer = observer;
 
         public bool NewGame(Player a_player)

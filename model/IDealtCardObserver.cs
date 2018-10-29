@@ -2,7 +2,7 @@ using System;
 
 namespace BlackJack.model
 {
-    public interface IObserver
+    public interface IDealtCardObserver
     {
         void NotifyAboutDealtCard();
     }

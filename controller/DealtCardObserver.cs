@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace BlackJack.controller
 {
-    class Observer : model.IObserver
+    class DealtCardObserver : model.IDealtCardObserver
     {
         private model.Game m_game;
         private view.IView m_view;
 
-        public Observer(model.Game a_game, view.IView a_view)
+        public DealtCardObserver(model.Game a_game, view.IView a_view)
         {
             m_game = a_game;
             m_view = a_view;
