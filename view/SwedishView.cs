@@ -37,11 +37,11 @@ namespace BlackJack.view
                 System.Console.WriteLine("{0} {1}", colors[(int)a_card.GetColor()], values[(int)a_card.GetValue()]);
             }
         }
-        public override void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score)
+        public void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score)
         {
             DisplayHand("Spelare", a_hand, a_score);
         }
-        public override void DisplayDealerHand(IEnumerable<model.Card> a_hand, int a_score)
+        public void DisplayDealerHand(IEnumerable<model.Card> a_hand, int a_score)
         {
             DisplayHand("Croupier", a_hand, a_score);
         }

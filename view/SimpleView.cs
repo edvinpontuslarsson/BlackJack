@@ -21,10 +21,10 @@ namespace BlackJack.view
             DisplayInstructions();
         }
 
-        public override void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score) => 
+        public void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score) => 
             DisplayHand("Player", a_hand, a_score);
 
-        public override void DisplayDealerHand(IEnumerable<model.Card> a_hand, int a_score) => 
+        public void DisplayDealerHand(IEnumerable<model.Card> a_hand, int a_score) => 
             DisplayHand("Dealer", a_hand, a_score);
 
         private void DisplayHand(String a_name, IEnumerable<model.Card> a_hand, int a_score)

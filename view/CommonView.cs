@@ -29,16 +29,7 @@ namespace BlackJack.view
                     return controller.UserWish.Unrecognized;
             }
         }
-
-        public void NotifyAboutDealtCard()
-        {
-            // UI should be redrawn when new card then paused
-        }
-
-        public abstract void DisplayDealerHand(IEnumerable<model.Card> a_hand, int a_score);
-
-        public abstract void DisplayPlayerHand(IEnumerable<model.Card> a_hand, int a_score);
-
-        private void Pause() => Thread.Sleep(1000);
+        
+        public void PauseDramatically() => Thread.Sleep(5000);
     }
 }

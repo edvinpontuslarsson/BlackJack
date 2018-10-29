@@ -9,25 +9,16 @@ namespace BlackJack.controller
     {
         public bool Play(model.Game a_game, view.IView a_view)
         {
-            // was here originally
+            // have an initializeView method instead
+
+            // DisplayStatus
             a_view.DisplayWelcomeMessage();
 
-            // TODO: perhaps use official C# observer thing instead
-
-            // observer from program
-            Observer observer = new Observer(a_view);
+            Observer observer = new Observer(a_game, a_view);
             a_game.RegisterObserver(observer);
-
-            // initiate view with model from program
-            
-            /* 
-            a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-            a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
-            */
 
             if (a_game.IsGameOver()) a_view.DisplayGameOver(a_game.IsDealerWinner());
 
-            // Code below, changed by Edvin Larsson
             UserWish userWish = a_view.GetUserWish();
 
             if (userWish == UserWish.Play) a_game.NewGame();
