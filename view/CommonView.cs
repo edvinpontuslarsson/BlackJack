@@ -30,6 +30,6 @@ namespace BlackJack.view
             }
         }
         
-        public void PauseDramatically() => Thread.Sleep(5000);
+        public void PauseDramatically() => Thread.Sleep(2000);
     }
 }

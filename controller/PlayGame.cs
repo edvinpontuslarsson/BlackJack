@@ -7,12 +7,11 @@ namespace BlackJack.controller
 {
     class PlayGame
     {
-        public bool Play(model.Game a_game, view.IView a_view)
-        {
-            // have an initializeView method instead
+        private bool GameStarted { get; set; }
 
-            // DisplayStatus
-            a_view.DisplayWelcomeMessage();
+        public bool Play(model.Game a_game, view.IView a_view)
+        {         
+            if (!GameStarted) a_view.DisplayWelcomeMessage();
 
             Observer observer = new Observer(a_game, a_view);
             a_game.RegisterObserver(observer);
@@ -21,7 +20,11 @@ namespace BlackJack.controller
 
             UserWish userWish = a_view.GetUserWish();
 
-            if (userWish == UserWish.Play) a_game.NewGame();
+            if (userWish == UserWish.Play)
+            {
+                GameStarted = true;
+                a_game.NewGame();
+            }
         
             if (userWish == UserWish.Hit) a_game.Hit();  
             
