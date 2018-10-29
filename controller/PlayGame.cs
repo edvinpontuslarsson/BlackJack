@@ -9,12 +9,11 @@ namespace BlackJack.controller
     {
         private bool GameStarted { get; set; }
 
-        public bool Play(model.Game a_game, view.IView a_view)
+        public bool Play(model.Game a_game, view.IView a_view, DealtCardObserver observer)
         {         
-            if (!GameStarted) a_view.DisplayWelcomeMessage();
-
-            DealtCardObserver observer = new DealtCardObserver(a_game, a_view);
             a_game.RegisterObserver(observer);
+
+            if (!GameStarted) a_view.DisplayWelcomeMessage();
 
             if (a_game.IsGameOver()) a_view.DisplayGameOver(a_game.IsDealerWinner());
 
