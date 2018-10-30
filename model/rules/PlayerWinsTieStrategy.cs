@@ -2,7 +2,6 @@ using System;
 
 namespace BlackJack.model.rules
 {
-    // class created by Edvin Larsson
     class PlayerWinsTieStrategy : CommonPickWinnerStrategy, IPickWinnerStrategy
     {
         /// <summary>

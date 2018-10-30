@@ -13,10 +13,6 @@ namespace BlackJack.model
 
         public virtual string Name { get => _name; }
 
-        /// <summary>
-        /// Edvin Larsson changed method name,
-        /// DealCard => AddCardToHand
-        /// </summary>
         public void AddCardToHand(Card a_card)
         {
             m_hand.Add(a_card);

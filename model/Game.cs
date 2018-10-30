@@ -39,9 +39,6 @@ namespace BlackJack.model
             return m_dealer.Hit(m_player);
         }
 
-        /// <summary>
-        /// Edvin Larsson changed this method
-        /// </summary>
         public bool Stand()
         {
             m_dealer.Stand();

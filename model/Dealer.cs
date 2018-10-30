@@ -45,7 +45,6 @@ namespace BlackJack.model
         }
 
         /// <summary>
-        /// Method author: Edvin Larsson,
         /// inspired by Sequence Diagram
         /// </summary>
         public void Stand()
@@ -72,9 +71,6 @@ namespace BlackJack.model
             return false;
         }
 
-        /// <summary>
-        /// Method created by Edvin Larsson
-        /// </summary>
         /// <param name="a_player">Player/Dealer</param>
         public void DealCardTo(Player a_player, bool shouldShowCard)
         {
